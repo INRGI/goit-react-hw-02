@@ -3,6 +3,7 @@ import Notification from "../Notification";
 import Statictics from "../Statictics";
 import { useState } from "react";
 import { Container } from "./App.styled";
+import Description from "../Description/Description";
 
 export const App = () => {
   const [good, setGood] = useState(0);
@@ -34,7 +35,8 @@ export const App = () => {
   const options = Object.keys({ good, neutral, bad });
 
   return (
-      <Container>
+    <Container>
+          <Description />
           <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
           {total !== 0 ? (
             <Statictics
