@@ -1,6 +1,5 @@
 import FeedbackOptions from "../FeedbackOptions";
 import Notification from "../Notification";
-import Section from "../Section";
 import Statictics from "../Statictics";
 import { useState } from "react";
 import { Container } from "./App.styled";
@@ -36,10 +35,7 @@ export const App = () => {
 
   return (
       <Container>
-        <Section title="Please leave feedback">
           <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
-        </Section>
-        <Section title="Statictics">
           {total !== 0 ? (
             <Statictics
               good={good}
@@ -50,7 +46,6 @@ export const App = () => {
           ) : (
             <Notification message="There is no feedback😿" />
           )}
-        </Section>
       </Container>
     );
 };
