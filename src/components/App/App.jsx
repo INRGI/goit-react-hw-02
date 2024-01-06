@@ -47,7 +47,12 @@ export const App = () => {
     }
   };
 
-  const onReset = () => window.localStorage.clear();
+  const onReset = () => {
+    window.localStorage.clear();
+    setGood(0);
+    setNeutral(0);
+    setBad(0);
+  };
 
   const totalFeedback = () => good + neutral + bad;
   const total = totalFeedback();

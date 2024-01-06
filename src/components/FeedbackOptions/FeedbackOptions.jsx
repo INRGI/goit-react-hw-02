@@ -13,7 +13,10 @@ const FeedbackOptions = ({ options, onLeaveFeedback, onReset }) => {
                     {option}
                 </Button>
             ))}
-            <Button onClick={onReset}>Reset</Button>
+            {localStorage.getItem('saved-good') || localStorage.getItem('saved-neutral') || localStorage.getItem('saved-bad') ?
+                <Button onClick={onReset}>Reset</Button>
+                : null
+            }
         </Container>
     );
 };
