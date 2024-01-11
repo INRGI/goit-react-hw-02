@@ -1,7 +1,7 @@
 import FeedbackOptions from "../FeedbackOptions";
 import Notification from "../Notification";
 import Statictics from "../Statictics";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "./App.styled";
 import Description from "../Description/Description";
 
@@ -28,19 +28,22 @@ export const App = () => {
     return 0;
   });
 
+  useEffect(() => {
+    localStorage.setItem('saved-good', good);
+    localStorage.setItem('saved-neutral', neutral);
+    localStorage.setItem('saved-bad', bad);
+  }, [bad, good, neutral]);
+
   const onLeaveFeedback = state => {
     switch (state) {
       case 'good':
         setGood(prev => prev + 1);
-        localStorage.setItem('saved-good', good);
         break;
       case 'neutral':
         setNeutral(prev => prev + 1);
-        localStorage.setItem('saved-neutral', neutral);
         break;
       case 'bad':
         setBad(prev => prev + 1);
-        localStorage.setItem('saved-bad', bad);
         break;
       default:
         return;
@@ -65,7 +68,7 @@ export const App = () => {
   return (
     <Container>
           <Description />
-      <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} onReset={onReset} />
+      <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} onReset={onReset} total={total} />
           {total !== 0 ? (
             <Statictics
               good={good}

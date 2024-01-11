@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Button, Container } from './FeedbackOptions.styled';
 
-const FeedbackOptions = ({ options, onLeaveFeedback, onReset }) => {
+const FeedbackOptions = ({ options, onLeaveFeedback, onReset, total }) => {
     return (
         <Container>
             {options.map(option => (
@@ -13,7 +13,7 @@ const FeedbackOptions = ({ options, onLeaveFeedback, onReset }) => {
                     {option}
                 </Button>
             ))}
-            {localStorage.getItem('saved-good') || localStorage.getItem('saved-neutral') || localStorage.getItem('saved-bad') ?
+            {total !== 0 ?
                 <Button onClick={onReset}>Reset</Button>
                 : null
             }
@@ -25,6 +25,7 @@ FeedbackOptions.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     onLeaveFeedback: PropTypes.func.isRequired,
     onReset: PropTypes.func.isRequired,
+    total: PropTypes.number.isRequired,
 };
 
 export default FeedbackOptions;
